@@ -1,7 +1,7 @@
 ---
 - name: Config IP
-  hosts: all
   gather_facts: false
+  hosts: all
   tasks:
     - name: Run basic PowerShell script
       win_powershell:
