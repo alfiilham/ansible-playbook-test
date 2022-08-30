@@ -1,7 +1,7 @@
 ---
 - name: Config IP
   hosts: all
-   collections:
+  collections:
     - ansible.windows
   gather_facts: false
   tasks:
