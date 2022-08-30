@@ -1,11 +1,11 @@
 ---
 - name: Config IP
   hosts: all
-  collections:
-    - ansible.windows
   gather_facts: false
   tasks:
-    - name: Run basic PowerShell script
-      win_powershell:
-        script: |
-          New-NetIPAddress -InterfaceIndex “14” -IPAddress '{{ var_ip }}' -PrefixLength 24 -DefaultGateway '{{ var_gw }}'
+   - win_powershell:
+       - name: Run basic PowerShell script
+         ansible.windows.win_powershell:
+           Force: true
+           script: |
+             New-NetIPAddress -InterfaceIndex “18” -IPAddress 10.8.156.88 -PrefixLength 24 -DefaultGateway 10.8.156.1
