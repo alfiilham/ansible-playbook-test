@@ -1,0 +1,4 @@
+collections:
+  - name: commscope.icx
+  - name: community.windows
+  - name: ansible.windows
