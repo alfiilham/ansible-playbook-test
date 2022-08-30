@@ -6,6 +6,6 @@
   gather_facts: false
   tasks:
     - name: Run basic PowerShell script
-      ansible.windows.win_powershell:
+      win_powershell:
         script: |
           New-NetIPAddress -InterfaceIndex “14” -IPAddress '{{ var_ip }}' -PrefixLength 24 -DefaultGateway '{{ var_gw }}'
