@@ -1,6 +1,4 @@
 ---
-- name: uninstall crowdstrike
-  hosts: all
-  gather_facts: no
+- hosts: all
   roles:
   - role: crowdstrike.falcon.falcon_uninstall
