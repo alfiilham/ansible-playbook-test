@@ -1,0 +1,52 @@
+---
+- name: Install IIS Web Server
+  gather_facts: no
+  hosts: all
+  tasks:
+    - name: Install IIS Web-Server with sub features and management tools
+      win_feature:
+        name: 
+        - Web-Server
+        - Web-Common-Http
+        state: present
+        include_sub_features: yes
+        include_management_tools: yes
+        source: D:\sources\sxs
+      register: win_feature
+
+    - name: Reboot if installing Web-Server feature requires it
+      win_reboot:
+      when: win_feature.reboot_required
+      
+    - name: Create folder website
+      win_file:
+        path: C:\sites\ansible
+        state: directory
+    - name: Create file index.html 
+      win_file:
+        path: C:\sites\ansible\index.html
+        state: touch
+    - name: Config File html
+      win_lineinfile:
+        path: C:\sites\ansible\index.html
+        line: POC Ansible
+        newline: windows
+    - name: Create a new application pool 
+      win_iis_webapppool:
+        name: acme
+        state: started
+ 
+    - name: Acme IIS site
+      win_iis_website:
+        name: acme
+        state: started
+        port: 80
+        ip: '*'
+        hostname: www.ansible.local
+        application_pool: acme
+        physical_path: C:\sites\ansible
+      
+    - name: Remove Default Web Site
+      win_iis_website:
+        name: "Default Web Site"
+        state: absent
