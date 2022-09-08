@@ -9,14 +9,6 @@
   collections: 
     - dellemc.os10 
   tasks: 
-  - name: "Set hostname and configure VLAN 10" 
-    os10_config: 
-      commands:
-        - hostname {{hostname}} 
-        - interface vlan 10    
-    register: set_hostname_vlan
-    
-  - debug: var=set_hostname_vlan
   - name: "create Vlan"
     os10_vlan:
       vlan 200:
