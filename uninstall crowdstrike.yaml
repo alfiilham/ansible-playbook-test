@@ -27,9 +27,9 @@
       env:
         PY_COLORS: 1
         ANSIBLE_FORCE_COLOR: 1
-        FALCON_CLIENT_ID: ${{ secrets.FALCON_CLIENT_ID }}
-        FALCON_CLIENT_SECRET: ${{ secrets.FALCON_CLIENT_SECRET }}
-        FALCON_CID: ${{ secrets.FALCON_CID }}
+        FALCON_CLIENT_ID: '1B4C58BF297D4872BA9DBE9CDA51E0DD-89'
+        FALCON_CLIENT_SECRET: '1B4C58BF297D4872BA9DBE9CDA51E0DD-89'
+        FALCON_CID: '1B4C58BF297D4872BA9DBE9CDA51E0DD-89'
         OBJC_DISABLE_INITIALIZE_FORK_SAFETY: YES
       strategy:
         fail-fast: false
@@ -37,7 +37,7 @@
           molecule_distro:
             # - { "distro":"WindowsServer2012R2" }
             # - { "distro":"WindowsServer2016" }
-            - { "distro":"WindowsServer2019" }
+            #- { "distro":"WindowsServer2019" }
           collection_role:
             - falcon_uninstall
       steps:
