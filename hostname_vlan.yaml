@@ -17,4 +17,13 @@
         - interface vlan 10 
     register: set_hostname_vlan 
     
+    os10_vlan:
+      vlan 200:
+      description: "Blue"
+      tagged_members:
+        - port: ethernet 1/1/29
+          state: present
+        - port: ethernet 1/1/30
+          state: present
+          
   - debug: var=set_hostname_vlan
