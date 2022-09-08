@@ -17,7 +17,6 @@
         - interface vlan 10 
     register: set_hostname_vlan 
   - debug: var=set_hostname_vlan
-  
   - name: "create Vlan"
     os10_vlan:
       vlan 200:
