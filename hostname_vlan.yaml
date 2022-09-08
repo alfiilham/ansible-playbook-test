@@ -8,7 +8,6 @@
     ansible_password: 'P@ssw0rd123'
   collections: 
     - dellemc.os10 
-    
   tasks: 
   - name: "Set hostname and configure VLAN 10" 
     os10_config: 
