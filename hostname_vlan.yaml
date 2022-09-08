@@ -15,9 +15,7 @@
       commands:
         - hostname {{hostname}} 
         - interface vlan 10 
-    register: set_hostname_vlan 
-    
-  - debug: var=set_hostname_vlan
+    register: set_hostname_vlan
   - name: "create Vlan"
     os10_vlan:
       default_vlan_id: 2
