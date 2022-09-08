@@ -11,12 +11,10 @@
   tasks: 
   - name: "create Vlan"
     os10_vlan:
-        vlan 200:
-          description: "Blue"
-          tagged_members:
-              - port: ethernet 1/1/29
-                state: present
-              - port: ethernet 1/1/30
-                state: present
-          
-  
+      vlan 200:
+        description: "Blue"
+        tagged_members:
+          - port: ethernet 1/1/29
+            state: present
+          - port: ethernet 1/1/30
+            state: present
