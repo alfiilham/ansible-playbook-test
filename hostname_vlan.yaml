@@ -1,7 +1,11 @@
 --- 
 - hosts: all
   gather_facts: false 
-  connection: network_cli 
+  connection: network_cli
+  vars:
+    ansible_network_os: dellemc.os10.os10
+    ansible_user: admin
+    ansible_password: 'P@ssw0rd123'
   collections: 
     - dellemc.os10 
     
