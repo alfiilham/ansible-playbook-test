@@ -5,26 +5,18 @@
   vars:
     ansible_network_os: dellemc.os10.os10
     ansible_user: admin
-    ansible_password: 'P@ssw0rd123'
-  collections: 
-    - dellemc.os10
-  roles:
-     - dellemc.os10.os10_vlan
-    
-  tasks: 
-  - name: "Set hostname and configure VLAN 10" 
-    os10_config: 
-      commands:
-        - hostname {{hostname}} 
-        - interface vlan 10 
-    register: set_hostname_vlan
-  - name: "create Vlan"
+    ansible_password: 'P@ssw0rd123'    
     os10_vlan:
         vlan 200:
           description: "Blue"
           tagged_members:
-              - port: ethernet 1/1/30
-                state: present
-              - port: ethernet 1/1/29
-                state: present
+            - port: ethernet 1/1/30
+              state: present
+            - port: ethernet 1/1/29
+              state: present
           state: present
+  collections: 
+    - dellemc.os10
+  roles:
+    - os10_vlan
+      
