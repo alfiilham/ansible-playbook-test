@@ -3,12 +3,12 @@
   gather_facts: false 
   connection: network_cli
   vars:
-    ansible_network_os: dellemc.os10.os10
     ansible_become: true
     ansible_become_method: enable
-    ansible_user: admin
-    ansible_password: 'P@ssw0rd123'  
     ansible_become_password: 'P@ssw0rd123'
+    ansible_user: admin
+    ansible_password: 'P@ssw0rd123'
+    ansible_network_os: dellemc.os10.os10
     os10_vlan:
         vlan 200:
           description: "Blue"
