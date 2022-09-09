@@ -7,7 +7,9 @@
     ansible_user: admin
     ansible_password: 'P@ssw0rd123'
   collections: 
-    - dellemc.os10 
+    - dellemc.os10
+  roles:
+     - dellemc.os10.os10_vlan
     
   tasks: 
   - name: "Set hostname and configure VLAN 10" 
@@ -18,7 +20,6 @@
     register: set_hostname_vlan
   - name: "create Vlan"
     os10_vlan:
-        default_vlan_id: 2
         vlan 200:
           description: "Blue"
           tagged_members:
