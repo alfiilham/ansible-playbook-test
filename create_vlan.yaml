@@ -5,17 +5,17 @@
   vars:
     ansible_become: true
     ansible_become_method: enable
-    ansible_become_password: ''
-    ansible_user: ''
-    ansible_password: ''
+    ansible_become_password: 'P@ssw0rd123'
+    ansible_user: 'admin'
+    ansible_password: 'P@ssw0rd123'
     ansible_network_os: dellemc.os10.os10
     os10_vlan:
-        vlan : 
-          description: ""
+        vlan 237 : 
+          description: "vlan engginer"
           tagged_members:
-            - port:
+            - port: ethernet 1/1/33
               state: present
-            - port:
+            - port: ethernet 1/1/34
               state: present
           state: present
   collections: 
