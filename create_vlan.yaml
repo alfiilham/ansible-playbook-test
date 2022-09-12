@@ -1,0 +1,24 @@
+--- 
+- hosts: all
+  gather_facts: false 
+  connection: network_cli
+  vars:
+    ansible_become: true
+    ansible_become_method: enable
+    ansible_become_password: ''
+    ansible_user: ''
+    ansible_password: ''
+    ansible_network_os: dellemc.os10.os10
+    os10_vlan:
+        vlan : 
+          description: ""
+          tagged_members:
+            - port:
+              state: present
+            - port:
+              state: present
+          state: present
+  collections: 
+    - dellemc.os10
+  roles:
+    - os10_vlan
