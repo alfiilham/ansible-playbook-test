@@ -1,11 +1,10 @@
 ---
 - hosts: all
   gather_facts: false 
-  connection: network_cli
   vars:
     falcon_windows_uninstall_args: "/norestart"
     falcon_windows_become_method: runas
-    falcon_windows_become_user: administrator
+    falcon_windows_become_user: SYSTEM
   collections: 
     - crowdstrike.falcon
   roles:
