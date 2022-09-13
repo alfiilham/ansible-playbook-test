@@ -2,10 +2,9 @@
   gather_facts: false 
   connection: network_cli
   vars:
-    falcon_uninstall:
-      falcon_windows_uninstall_args: "/norestart"
-      falcon_windows_become_method: runas
-      falcon_windows_become_user: SISTEM
+    falcon_windows_uninstall_args: "/norestart"
+    falcon_windows_become_method: runas
+    falcon_windows_become_user: SISTEM
   collections: 
     - crowdstrike.falcon
   roles:
