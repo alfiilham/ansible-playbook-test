@@ -8,4 +8,4 @@
   collections: 
     - crowdstrike.falcon
   roles:
-    - role: falcon_uninstall
+    - falcon_uninstall
