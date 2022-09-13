@@ -2,13 +2,12 @@
   gather_facts: false
   collections: 
     - crowdstrike.falcon
-    
-  - name: Get all Falcon sensor options
-    crowdstrike.falcon.falconctl_info:
-
-  - name: Get a subset of Falcon sensor options
-    crowdstike.falcon.falconctl_info:
-      name:
-        - 'cid'
-        - 'aid'
-        - 'tags'
+  tasks:
+    - name: Get all Falcon sensor options
+      crowdstrike.falcon.falconctl_info:
+    - name: Get a subset of Falcon sensor options
+      crowdstike.falcon.falconctl_info:
+        name:
+          - 'cid'
+          - 'aid'
+          - 'tags'
