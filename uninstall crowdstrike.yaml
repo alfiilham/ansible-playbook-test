@@ -5,7 +5,7 @@
     falcon_uninstall:
       falcon_windows_uninstall_args: "/norestart"
       falcon_windows_become_method: runas
-      falcon_windows_become_user: SYSTEM
+      falcon_windows_become_user: SISTEM
   collections: 
     - crowdstrike.falcon
   roles:
