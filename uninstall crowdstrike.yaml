@@ -13,7 +13,7 @@
         recurse: yes
       register: falcon_win_sensor_cache
       
-    -debug: var=falcon_win_sensor_cache
+    - debug: var=falcon_win_sensor_cache
 
     - name: CrowdStrike Falcon | Remove Falcon Sensor (Windows)
       ansible.windows.win_package:
