@@ -2,7 +2,7 @@
 - hosts: all
   vars:
     falcon_api_enable_no_log: no
-    falcon_client_id: 7f3ffc772bc84f088df332f41ec6c71a
-    falcon_client_secret: GZ9wM5lc1rCuvEF4yJiB6p3T78DtLz2s0mkhYRbO
+    falcon_client_id: "7f3ffc772bc84f088df332f41ec6c71a"
+    falcon_client_secret: "GZ9wM5lc1rCuvEF4yJiB6p3T78DtLz2s0mkhYRbO"
   roles:
   - role: crowdstrike.falcon.falcon_install
