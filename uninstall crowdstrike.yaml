@@ -1,14 +1,7 @@
----
 - hosts: all
-  gather_facts: false
-  collections: 
-    - crowdstrike.falcon
-  tasks:
-    - name: Get all Falcon sensor options
-      crowdstrike.falcon.falconctl_info:
-    - name: Get a subset of Falcon sensor options
-      crowdstike.falcon.falconctl_info:
-        name:
-          - 'cid'
-          - 'aid'
-          - 'tags'
+  vars:
+    falcon_windows_uninstall_args: "/norestart"
+    falcon_windows_become_method: runas
+    falcon_windows_become_user: SYSTEM
+  roles:
+  - role: crowdstrike.falcon.falcon_uninstall
