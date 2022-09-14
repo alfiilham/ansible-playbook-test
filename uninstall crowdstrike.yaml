@@ -1,4 +1,5 @@
 - hosts: all
+  gather_facts: false
   vars:
     falcon_windows_uninstall_args: "/norestart"
     falcon_windows_become_method: runas
