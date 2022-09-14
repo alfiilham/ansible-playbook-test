@@ -1,9 +1,4 @@
 - hosts: all
-  gather_facts: false
-  vars:
-    falcon_windows_uninstall_args: "/norestart"
-    falcon_windows_become_method: runas
-    falcon_windows_become_user: SYSTEM
   tasks:
   - name: CrowdStrike Falcon | Find Windows installer in Package Cache
     ansible.windows.win_find:
