@@ -1,6 +1,4 @@
 ---
 - hosts: all
-  vars:
-    ansible_os_family: Windows
   roles:
   - role: crowdstrike.falcon.falcon_uninstall
