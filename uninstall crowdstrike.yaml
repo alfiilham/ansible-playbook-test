@@ -17,7 +17,7 @@
 
     - name: CrowdStrike Falcon | Remove Falcon Sensor (Windows)
       ansible.windows.win_package:
-        path: "{{ falcon_win_sensor_cache.files[0].path }}"
+        path: "{{ falcon_win_sensor_cache.dir[0].path }}"
         state: absent
         creates_service: csfalconservice
         arguments: '/uninstall /quiet {{ falcon_windows_uninstall_args }}'
