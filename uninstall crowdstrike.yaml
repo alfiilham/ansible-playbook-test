@@ -1,9 +1,14 @@
 ---
 - hosts: all
-  vars:
-    MAINTENANCE_TOKEN: 1B4C58BF297D4872BA9DBE9CDA51E0DD-89 
-    falcon_windows_uninstall_args: "/norestart"
-    falcon_windows_become_method: runas
-    falcon_windows_become_user: SYSTEM
-  roles:
-  - role: crowdstrike.falcon.falcon_uninstall
+  gather_facts: false
+  collections: 
+    - crowdstrike.falcon
+  tasks:
+    - name: Get all Falcon sensor options
+      crowdstrike.falcon.falconctl_info:
+    - name: Get a subset of Falcon sensor options
+      crowdstike.falcon.falconctl_info:
+        name:
+          - 'cid'
+          - 'aid'
+          - 'tags'
