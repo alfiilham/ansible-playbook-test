@@ -3,7 +3,7 @@
   vars:
     falcon_windows_uninstall_args: "/norestart"
     falcon_windows_become_method: runas
-    falcon_windows_become_user: SYSTEM
+    falcon_windows_become_user: Administrators
     ansible_os_family: Windows
   roles:
   - role: crowdstrike.falcon.falcon_uninstall
