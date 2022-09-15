@@ -9,6 +9,7 @@
     - name: CrowdStrike Falcon | Find Windows installer in Package Cache
       ansible.windows.win_find:
         paths: C:\ProgramData\Package Cache
+        file_type: directory
         patterns: WindowsSensor.exe
         recurse: yes
       register: falcon_win_sensor_cache
