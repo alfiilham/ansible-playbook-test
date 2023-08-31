@@ -1,6 +1,5 @@
 ---
 - name: Patch Ubuntu Servers
-  hosts: ubuntu_servers
   become: yes  # This enables privilege escalation to perform tasks as root
 
   tasks:
