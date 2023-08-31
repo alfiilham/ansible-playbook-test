@@ -1,7 +1,7 @@
 ---
 - name: Patch Ubuntu Servers
+  hosts: all
   become: yes  # This enables privilege escalation to perform tasks as root
-
   tasks:
     - name: Update apt cache
       apt:
