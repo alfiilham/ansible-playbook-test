@@ -1,7 +1,7 @@
 ---
 # Global Settings
 - vcenter_server: 10.8.150.8
-- vcenter_user: administrator@vsphere.local
+- vcenter_user: arief.amarullah@virtus.demo
 - vcenter_pass: 'P@ssw0rd'
 - datacenter: Management
 - cluster: Mgmt
