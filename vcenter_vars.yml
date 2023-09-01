@@ -14,7 +14,7 @@
 # VM settings
 - template_name1: linux-template
 - template_name2: win-template
-- template_name3: ubuntu-template
+- template_name3: Ubuntu - VM Test
 - vm_name3: Ubuntu-VM
 - vm_name2: Windows-VM
 - vm_name1: Linux-VM
