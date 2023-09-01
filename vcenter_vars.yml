@@ -4,7 +4,7 @@
 - vcenter_user: arief.amarullah@virtus.demo
 - vcenter_pass: 'P@ssw0rd'
 - datacenter: Management
-- cluster: Mgmt
+- cluster: 10.8.230.140
 
 # ESXi settings
 - esxi_hostname: 10.8.230.140
