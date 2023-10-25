@@ -4,7 +4,7 @@
 - vcenter_user: administrator@vsphere.local
 - vcenter_pass: 'P@ssw0rd'
 - datacenter: Datacenter Redhat
-- cluster: 10.8.230.197
+- cluster: Redhat
 
 # ESXi settings
 - esxi_hostname: 10.8.230.140
