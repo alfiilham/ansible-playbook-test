@@ -9,7 +9,7 @@
     - include_vars: vcenter_vars.yml
   tasks:
     - name: Clone a virtual machine
-      vmware_guest:
+      community.vmware.vmware_guest:
         name: "{{ vm_name1 }}"
         template: "{{ template_name1 }}"
         hostname: "{{ vcenter_server }}"
@@ -26,7 +26,7 @@
         that:
           - "vm_result.changed"
     - name: Poweron virtual machine
-      vmware_guest_powerstate:
+      community.vmware.vmware_guest_powerstate:
         name: "{{ vm_name1 }}"
         hostname: "{{ vcenter_server }}"
         username: "{{ vcenter_user }}"
