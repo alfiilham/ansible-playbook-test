@@ -1,15 +1,12 @@
 ---
 - name: Guest Creation
+  gather_facts: no
+  vars_files:
+    - vcenter_vars.yml
   hosts: localhost
-  become: false
-  gather_facts: false
-  collections:
-    - community.vmware
-  pre_tasks:
-    - include_vars: vcenter_vars.yml
   tasks:
-    - name: Clone a virtual machine
-      community.vmware.vmware_guest:
+    - name: Clone a virtual machine {{ vm_name1 }} from existing template {{ template_name1 }}
+      vmware_guest:
         name: "{{ vm_name1 }}"
         template: "{{ template_name1 }}"
         hostname: "{{ vcenter_server }}"
@@ -25,8 +22,8 @@
       assert:
         that:
           - "vm_result.changed"
-    - name: Poweron virtual machine
-      community.vmware.vmware_guest_powerstate:
+    - name: Poweron virtual machine name {{ vm_name1 }}
+      vmware_guest_powerstate:
         name: "{{ vm_name1 }}"
         hostname: "{{ vcenter_server }}"
         username: "{{ vcenter_user }}"
