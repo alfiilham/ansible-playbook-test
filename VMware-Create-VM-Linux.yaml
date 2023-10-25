@@ -8,7 +8,7 @@
     - name: community.vmware
   tasks:
     - name: Clone a virtual machine {{ vm_name1 }} from existing template {{ template_name1 }}
-      community.vmware.vmware_guest:
+      vmware_guest:
         name: "{{ vm_name1 }}"
         template: "{{ template_name1 }}"
         hostname: "{{ vcenter_server }}"
@@ -25,7 +25,7 @@
         that:
           - "vm_result.changed"
     - name: Poweron virtual machine name {{ vm_name1 }}
-      community.vmware.vmware_guest_powerstate:
+      vmware_guest_powerstate:
         name: "{{ vm_name1 }}"
         hostname: "{{ vcenter_server }}"
         username: "{{ vcenter_user }}"
