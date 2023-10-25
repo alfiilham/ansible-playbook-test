@@ -25,7 +25,7 @@
       assert:
         that:
           - "vm_result.changed"
-    - name: Poweron virtual machine name {{ vm_name1 }}
+    - name: Poweron virtual machine
       vmware_guest_powerstate:
         name: "{{ vm_name1 }}"
         hostname: "{{ vcenter_server }}"
