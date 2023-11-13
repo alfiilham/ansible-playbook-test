@@ -1,6 +1,6 @@
 ---     
 - name: Copy file from poll to remote
-  hosts: {{poll}}
+  hosts: 10.8.230.153
   tasks:
     - name: Copy file to a temporary directory
       ansible.builtin.fetch:
@@ -8,7 +8,7 @@
         dest: "{{ src }}"
 
 - name: Transfer file from remote to target
-  hosts: {{target}}
+  hosts: 10.8.230.175
   tasks:
     - name: Copy file from temporary directory
       ansible.builtin.copy:
