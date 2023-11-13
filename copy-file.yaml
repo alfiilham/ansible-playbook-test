@@ -5,12 +5,12 @@
     - name: Copy file to a remote
       ansible.builtin.fetch:
         src: "{{ poll }}"
-        dest: "/root/file"
+        dest: "/root/file/"
 
 - name: Transfer file from remote to target
   hosts: 10.8.230.175
   tasks:
     - name: Copy file from temporary directory
       ansible.builtin.copy:
-        src: "/root/file"
+        src: "/root/file/"
         dest: "{{ dst }}"
