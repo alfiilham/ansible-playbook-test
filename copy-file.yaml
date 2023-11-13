@@ -4,7 +4,7 @@
   become: yes
   tasks:
     - name: copy file from local to remote node
-      ansible.posix.synchronize:
+      ansible.builtin.copy:
         src: "{{ src }}"
         dest: "{{ dst }}"
         mode: push
