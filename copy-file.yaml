@@ -1,6 +1,6 @@
 ---     
 - name: Copy file from poll to remote
-  hosts: localhost
+  hosts: 10.8.230.61
   tasks:
     - name: Copy file to a remote
       ansible.builtin.fetch:
