@@ -3,6 +3,9 @@
   hosts: all
   become: yes
   tasks:
+    - name: Debug
+      debug:
+        var: ansible_env.HOME
     - name: copy file from local to remote node
       ansible.builtin.copy:
         src: "{{ src }}"
