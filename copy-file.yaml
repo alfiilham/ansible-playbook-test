@@ -12,5 +12,5 @@
   tasks:
     - name: Copy file from temporary directory
       ansible.builtin.copy:
-        src: "/root/file/"
+        src: "/root/file/{{poll}}"
         dest: "{{ dst }}"
