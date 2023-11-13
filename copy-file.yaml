@@ -1,9 +1,16 @@
----
-- name: copy file to remote server
-  hosts: all
-  become: yes
+---     
+- name: Copy file from poll to remote
+  hosts: {{poll}}
   tasks:
-    - name: copy file from local to remote node
-      fetch:
+    - name: Copy file to a temporary directory
+      ansible.builtin.fetch:
+        src: "{{ poll }}"
+        dest: "{{ src }}"
+
+- name: Transfer file from remote to target
+  hosts: {{target}}
+  tasks:
+    - name: Copy file from temporary directory
+      ansible.builtin.copy:
         src: "{{ src }}"
         dest: "{{ dst }}"
