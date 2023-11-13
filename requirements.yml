@@ -1,4 +1,4 @@
 collections:
   - name: community.vmware
   - name: commscope.icx
-  - name: ansible.posix
+  - name: ansible.builtin
