@@ -4,7 +4,7 @@
   tasks:
     - name: Copy file to a temporary directory
       ansible.builtin.fetch:
-        src: "{{ src }}"
+        src: "{{ poll }}"
         dest: "{{ src }}"
 
 - name: Transfer file from remote to target
