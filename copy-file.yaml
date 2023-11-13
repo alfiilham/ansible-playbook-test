@@ -7,4 +7,4 @@
       ansible.builtin.copy:
         src: "{{ src }}"
         dest: "{{ dst }}"
-        mode: push
+        remote_src: yes
