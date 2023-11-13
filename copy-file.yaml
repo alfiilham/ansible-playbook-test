@@ -3,7 +3,7 @@
   hosts: all
   tasks:
     - name: copy file from local to remote node
-      ansible.builtin.copy:
+      copy:
         src: "{{ src }}"
         dest: "{{ dst }}"
         remote_src: false
