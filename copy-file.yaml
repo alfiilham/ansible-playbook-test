@@ -1,0 +1,10 @@
+---
+- name: copy file to remote server
+  hosts: all
+  become: yes
+  tasks:
+    - name: copy file from local to remote node
+      ansible.posix.synchronize:
+      src: "{{ src }}"
+      dest: "{{ dst }}"
+      mode: push
