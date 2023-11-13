@@ -8,7 +8,7 @@
         dest: "/root/file/"
 
 - name: Transfer file from remote to target
-  hosts: all
+  hosts: all:!10.8.230.61
   tasks:
     - name: Copy file from temporary directory
       ansible.builtin.copy:
