@@ -4,7 +4,6 @@
   become: yes
   tasks:
     - name: copy file from local to remote node
-      ansible.posix.synchronize:
+      fetch:
         src: "{{ src }}"
         dest: "{{ dst }}"
-        mode: pull
