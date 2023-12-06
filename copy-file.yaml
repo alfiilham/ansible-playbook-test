@@ -14,3 +14,11 @@
       ansible.builtin.copy:
         src: "/root/file/10.8.230.61/{{poll}}"
         dest: "{{ dst }}"
+        
+- name: extract filee installer
+  hosts: all:!10.8.230.61
+  ansible.builtin.shell: tar zxvf {{poll}}
+
+- name: run command install 
+  hosts: all:!10.8.230.61
+  ansible.builtin.script: ./install.sh '{{key}}'
