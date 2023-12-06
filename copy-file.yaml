@@ -19,6 +19,3 @@
   hosts: all:!10.8.230.61
   ansible.builtin.shell: tar zxvf {{poll}}
 
-- name: run command install 
-  hosts: all:!10.8.230.61
-  ansible.builtin.script: ./install.sh '{{key}}'
