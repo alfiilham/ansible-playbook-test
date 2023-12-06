@@ -23,6 +23,7 @@
 
 - name: run command install 
   hosts: all:!10.8.230.61
+  become: yes
   tasks:
     - name: run command install
       ansible.builtin.script: install.sh '{{key}}'
