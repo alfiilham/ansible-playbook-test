@@ -17,7 +17,7 @@
         
 - name: extract filee installer
   hosts: all:!10.8.230.61
-    tasks:
+  tasks:
     - name: extract file installer
       ansible.builtin.shell: tar zxvf {{poll}}
 
