@@ -23,3 +23,7 @@
       ansible.windows.win_copy:
         src: "/root/file/10.8.230.61/{{ poll }}"
         dest: "{{ dst }}"
+        
+    - name: Run Script Install
+      win_shell: |
+                msiexec /q /i {{ dst }}\{{ poll }} /L* log.txt COMPANY_CODE="{{ key }}"
