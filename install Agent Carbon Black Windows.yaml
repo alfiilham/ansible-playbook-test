@@ -16,8 +16,9 @@
     ansible_shell_type: powershell
     ansible_become_method: runas
     ansible_become_user: "{{ ansible_user }}"
+    ansible_pool: "{{pool}}"
   tasks:
     - name: Copy file from temporary directory
       ansible.windows.win_copy:
-        src: "/root/file/10.8.230.61/{{poll}}"
+        src: "/root/file/10.8.230.61/{{ansible_poll}}"
         dest: "{{ dst }}"
