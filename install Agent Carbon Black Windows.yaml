@@ -6,7 +6,9 @@
       ansible.builtin.fetch:
         src: "{{ poll }}"
         dest: "/root/file/"
-- hosts: all:!10.8.230.61
+        
+- name: Copy file from temporary directory
+  hosts: all:!10.8.230.61
   vars:
     ansible_user: "administrator"
     ansible_password: "P@ssw0rd"
