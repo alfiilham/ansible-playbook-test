@@ -6,7 +6,7 @@
       ansible.builtin.fetch:
         src: "{{ poll }}"
         dest: "/root/file/"
-- hosts: all
+- hosts: all:!10.8.230.61
   vars:
     ansible_user: "administrator"
     ansible_password: "P@ssw0rd"
