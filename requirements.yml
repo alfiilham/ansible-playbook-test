@@ -1,7 +1,7 @@
-collections:
-  - name: ansible.posix
-  - name: ansible.windows
-
 roles:
   - name: lucascbeyeler.zimbra
   - name: lucascbeyeler.baseline
+  
+collections:
+  - name: ansible.posix
+  - name: ansible.windows
