@@ -1,6 +1,11 @@
 - hosts: all
   become: yes
   become_method: sudo
+  pre_tasks:
+    - name: Install required roles
+      ansible.builtin.shell: ansible-galaxy role install lucascbeyeler.baseline
+      ignore_errors: yes
+
   roles:
      - role: lucascbeyeler.baseline
        hostname: pikachu
