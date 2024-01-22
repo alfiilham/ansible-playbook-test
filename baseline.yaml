@@ -13,6 +13,3 @@
       timezone: America/Sao_Paulo
       enable_hushlogin:
       ssh_port: 8080
-
-  ansible_env:
-    ANSIBLE_ROLES_PATH: /etc/ansible/roles
