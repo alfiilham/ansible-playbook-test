@@ -5,11 +5,13 @@
     - name: Install required roles
       ansible.builtin.shell: ansible-galaxy role install lucascbeyeler.baseline
       ignore_errors: yes
-
-  roles:
-     - role: lucascbeyeler.baseline
-       hostname: pikachu
-       domain: johto.com
-       timezone: America/Sao_Paulo
-       enable_hushlogin:
-       ssh_port: 8080
+      
+  tasks:
+    - name: install baseline
+      roles:
+         - role: lucascbeyeler.baseline
+           hostname: pikachu
+           domain: johto.com
+           timezone: America/Sao_Paulo
+           enable_hushlogin:
+           ssh_port: 8080
