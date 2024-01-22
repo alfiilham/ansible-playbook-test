@@ -1,4 +1,4 @@
 collections:
-  - name: lucascbeyeler
+  - name: lucascbeyeler.zimbra
   - name: ansible.posix
   - name: ansible.windows
