@@ -1,11 +1,5 @@
 - hosts: all
   become: yes
   become_method: sudo
-
   roles:
-    - role: lucascbeyeler.baseline
-      hostname: pikachu
-      domain: johto.com
-      timezone: America/Sao_Paulo
-      enable_hushlogin:
-      ssh_port: 8080
+    - lucascbeyeler.baseline
