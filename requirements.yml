@@ -1,7 +1,2 @@
-- name: lucascbeyeler.baseline
-  src: https://github.com/lucascbeyeler/baseline
-  version: master
-  
-collections:
-  - name: ansible.posix
-  - name: ansible.windows
+roles:
+  - name: lucascbeyeler.baseline
