@@ -1,6 +1,6 @@
-roles:
-  - name: lucascbeyeler.zimbra
-  - name: lucascbeyeler.baseline
+- name: lucascbeyeler.baseline
+  src: https://github.com/lucascbeyeler/baseline
+  version: master
   
 collections:
   - name: ansible.posix
