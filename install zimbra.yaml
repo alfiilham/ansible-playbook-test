@@ -1,0 +1,10 @@
+  - hosts: all
+    become: yes
+    become_method: sudo
+    roles:
+       - role: lucascbeyeler.zimbra
+         hostname: localhost
+         domain: localdomain
+         timezone: America/Sao_Paulo
+         zmpasswd: 123change
+         zmnetwork: 10.8.230.0/24
