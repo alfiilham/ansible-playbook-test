@@ -1,5 +1,3 @@
 collections:
   - name: ansible.posix
   - name: ansible.windows
-  - name: lucascbeyeler.baseline
-  - name: lucascbeyeler.zimbra
