@@ -1,0 +1,26 @@
+---
+- name: Open port in firewall
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install firewalld (if not already installed)
+      yum:
+        name: firewalld
+        state: present
+
+    - name: Ensure firewalld service is started and enabled
+      service:
+        name: firewalld
+        state: started
+        enabled: yes
+
+    - name: Open port {{ port_number }}/{{ protocol }} in firewall
+      firewalld:
+        port: "{{ port_number }}/{{ protocol }}"
+        permanent: yes
+        state: enabled
+
+    - name: Reload firewalld to apply changes
+      service:
+        name: firewalld
+        state: reloaded
