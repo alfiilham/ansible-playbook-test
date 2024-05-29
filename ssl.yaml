@@ -1,0 +1,41 @@
+---
+- name: Deploy SSL certificates on Zimbra servers
+  hosts: all
+  become: yes
+  vars:
+    cert_files:
+      - STAR_polri_go_id.crt
+      - SectigoRSADomainValidationSecureServerCA.crt
+      - USERTrustRSAAAACA.crt
+      - AAACertificateServices.crt
+      - polri.key
+    cert_source_dir: /root
+    cert_dest_dir: /opt/zimbra/ssl/sslcerts
+
+  tasks:
+    - name: Create certificate destination directory if not exists
+      file:
+        path: "{{ cert_dest_dir }}"
+        state: directory
+        owner: zimbra
+        group: zimbra
+        mode: '0755'
+
+    - name: Copy certificate files to Zimbra server
+      copy:
+        src: "{{ cert_source_dir }}/{{ item }}"
+        dest: "{{ cert_dest_dir }}/{{ item }}"
+        owner: zimbra
+        group: zimbra
+        mode: '0644'
+      loop: "{{ cert_files }}"
+
+    - name: Deploy the SSL certificate
+      shell: |
+        su - zimbra -c "/opt/zimbra/bin/zmcertmgr deploycrt comm {{ cert_dest_dir }}/STAR_polri_go_id.crt {{ cert_dest_dir }}/SectigoRSADomainValidationSecureServerCA.crt"
+        su - zimbra -c "/opt/zimbra/bin/zmcertmgr deploycrt self {{ cert_dest_dir }}/STAR_polri_go_id.crt {{ cert_dest_dir }}/SectigoRSADomainValidationSecureServerCA.crt"
+        su - zimbra -c "/opt/zimbra/bin/zmcertmgr deploycrt commercial {{ cert_dest_dir }}/STAR_polri_go_id.crt {{ cert_dest_dir }}/SectigoRSADomainValidationSecureServerCA.crt"
+        su - zimbra -c "/opt/zimbra/bin/zmcertmgr deploycrt commercial {{ cert_dest_dir }}/STAR_polri_go_id.crt {{ cert_dest_dir }}/SectigoRSADomainValidationSecureServerCA.crt {{ cert_dest_dir }}/polri.key"
+
+    - name: Restart Zimbra services
+      shell: su - zimbra -c "zmcontrol restart"
