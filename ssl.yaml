@@ -2,6 +2,7 @@
 - name: Deploy SSL certificates on Zimbra servers
   hosts: all
   become: yes
+
   vars:
     cert_files:
       - STAR_polri_go_id.crt
@@ -11,6 +12,8 @@
       - polri.key
     cert_source_dir: /root
     cert_dest_dir: /opt/zimbra/ssl/sslcerts
+    combined_cert: /tmp/commercial_ca.crt
+    commercial_cert: /tmp/commercial.crt
 
   tasks:
     - name: Create certificate destination directory if not exists
@@ -30,12 +33,32 @@
         mode: '0644'
       loop: "{{ cert_files }}"
 
+    - name: Combine certificates into one file
+      command: cat {{ cert_dest_dir }}/AAACertificateServices.crt {{ cert_dest_dir }}/USERTrustRSAAAACA.crt {{ cert_dest_dir }}/SectigoRSADomainValidationSecureServerCA.crt > {{ combined_cert }}
+
+    - name: Copy commercial certificate
+      copy:
+        src: "{{ cert_source_dir }}/STAR_polri_go_id.crt"
+        dest: "{{ commercial_cert }}"
+        owner: zimbra
+        group: zimbra
+        mode: '0644'
+
+    - name: Copy key to the commercial directory
+      copy:
+        src: "{{ cert_source_dir }}/polri.key"
+        dest: /opt/zimbra/ssl/zimbra/commercial/commercial.key
+        owner: zimbra
+        group: zimbra
+        mode: '0600'
+
+    - name: Verify the SSL certificate
+      shell: |
+        /opt/zimbra/bin/zmcertmgr verifycrt comm /opt/zimbra/ssl/zimbra/commercial/commercial.key {{ commercial_cert }} {{ combined_cert }}
+
     - name: Deploy the SSL certificate
       shell: |
-        su - zimbra -c "/opt/zimbra/bin/zmcertmgr deploycrt comm {{ cert_dest_dir }}/STAR_polri_go_id.crt {{ cert_dest_dir }}/SectigoRSADomainValidationSecureServerCA.crt"
-        su - zimbra -c "/opt/zimbra/bin/zmcertmgr deploycrt self {{ cert_dest_dir }}/STAR_polri_go_id.crt {{ cert_dest_dir }}/SectigoRSADomainValidationSecureServerCA.crt"
-        su - zimbra -c "/opt/zimbra/bin/zmcertmgr deploycrt commercial {{ cert_dest_dir }}/STAR_polri_go_id.crt {{ cert_dest_dir }}/SectigoRSADomainValidationSecureServerCA.crt"
-        su - zimbra -c "/opt/zimbra/bin/zmcertmgr deploycrt commercial {{ cert_dest_dir }}/STAR_polri_go_id.crt {{ cert_dest_dir }}/SectigoRSADomainValidationSecureServerCA.crt {{ cert_dest_dir }}/polri.key"
-
+        /opt/zimbra/bin/zmcertmgr deploycrt comm {{ commercial_cert }} {{ combined_cert }}
+        
     - name: Restart Zimbra services
       shell: su - zimbra -c "zmcontrol restart"
