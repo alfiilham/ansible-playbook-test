@@ -10,7 +10,7 @@
       - USERTrustRSAAAACA.crt
       - AAACertificateServices.crt
       - polri.key
-    cert_source_dir: /root
+    cert_source_dir: /home/adminserver
     cert_dest_dir: /opt/zimbra/ssl/sslcerts
     combined_cert: /tmp/commercial_ca.crt
     commercial_cert: /tmp/commercial.crt
@@ -34,7 +34,8 @@
       loop: "{{ cert_files }}"
 
     - name: Combine certificates into one file
-      command: cat {{ cert_dest_dir }}/AAACertificateServices.crt {{ cert_dest_dir }}/USERTrustRSAAAACA.crt {{ cert_dest_dir }}/SectigoRSADomainValidationSecureServerCA.crt > {{ combined_cert }}
+      shell: |
+        cat {{ cert_dest_dir }}/AAACertificateServices.crt {{ cert_dest_dir }}/USERTrustRSAAAACA.crt {{ cert_dest_dir }}/SectigoRSADomainValidationSecureServerCA.crt > {{ combined_cert }}
 
     - name: Copy commercial certificate
       copy:
@@ -54,11 +55,21 @@
 
     - name: Verify the SSL certificate
       shell: |
-        /opt/zimbra/bin/zmcertmgr verifycrt comm /opt/zimbra/ssl/zimbra/commercial/commercial.key {{ commercial_cert }} {{ combined_cert }}
+        su - zimbra -c "/opt/zimbra/bin/zmcertmgr verifycrt comm /opt/zimbra/ssl/zimbra/commercial/commercial.key {{ commercial_cert }} {{ combined_cert }}"
+      register: verify_output
+
+    - name: Debug verification output
+      debug:
+        var: verify_output.stdout
 
     - name: Deploy the SSL certificate
       shell: |
-        /opt/zimbra/bin/zmcertmgr deploycrt comm {{ commercial_cert }} {{ combined_cert }}
+        su - zimbra -c "/opt/zimbra/bin/zmcertmgr deploycrt comm {{ commercial_cert }} {{ combined_cert }}"
+      register: deploy_output
+
+    - name: Debug deployment output
+      debug:
+        var: deploy_output.stdout
         
     - name: Restart Zimbra services
       shell: su - zimbra -c "zmcontrol restart"
